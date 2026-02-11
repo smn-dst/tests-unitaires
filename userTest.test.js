@@ -47,7 +47,8 @@ describe("User.isValid()", () => {
       "Simon",
       "Dousset",
       "2000-01-01",
-      "simon@test.com"
+      "simon@test.com",
+      "Password123"
     );
 
     expect(user.isValid()).toBe(true);
@@ -58,7 +59,8 @@ describe("User.isValid()", () => {
       "Simon",
       "Dousset",
       "2000-01-01",
-      ""
+      "",
+      "Password123"
     );
 
     expect(user.isValid()).toBe(false);
@@ -70,7 +72,8 @@ describe("User.isValid()", () => {
       "Simon",
       "Dousset",
       "2000-01-01",
-      "simon.test.com" // pas de "@"
+      "simon.test.com", // pas de "@"
+      "Password123"
     );
 
     expect(user.isValid()).toBe(false);
@@ -81,7 +84,8 @@ describe("User.isValid()", () => {
       "",
       "Dousset",
       "2000-01-01",
-      "simon@test.com"
+      "simon@test.com",
+      "Password123"
     );
 
     expect(user.isValid()).toBe(false);
@@ -99,7 +103,8 @@ describe("User.isValid()", () => {
       "Simon",
       "Dousset",
       birth,
-      "simon@test.com"
+      "simon@test.com",
+      "Password123"
     );
 
     expect(user.isValid()).toBe(false);
@@ -110,10 +115,78 @@ describe("User.isValid()", () => {
       "Simon",
       "Dousset",
       "date-invalide",
-      "simon@test.com"
+      "simon@test.com",
+      "Password123"
     );
 
     expect(user.isValid()).toBe(false);
   });
 
+  test("false = mot de passe manquant", () => {
+    const user = new User(
+      "Simon",
+      "Dousset",
+      "2000-01-01",
+      "simon@test.com",
+      ""
+    );
+
+    expect(user.isValid()).toBe(false);
+  });
+
+  test("false = mot de passe trop court", () => {
+    const user = new User(
+      "Simon",
+      "Dousset",
+      "2000-01-01",
+      "simon@test.com",
+      "Pass123"
+    );
+
+    expect(user.isValid()).toBe(false);
+  });
+
+  test("false = mot de passe sans majuscule", () => {
+    const user = new User(
+      "Simon",
+      "Dousset",
+      "2000-01-01",
+      "simon@test.com",
+      "password123"
+    );
+  });
+
+  test("false = mot de passe sans minuscule", () => {
+    const user = new User(
+      "Simon",
+      "Dousset",
+      "2000-01-01",
+      "simon@test.com",
+      "PASSWORD123"
+    );
+
+    expect(user.isValid()).toBe(false);
+  });
+
+  test("false = mot de passe sans chiffre", () => {
+    const user = new User(
+      "Simon",
+      "Dousset",
+      "2000-01-01",
+      "simon@test.com",
+      "Password"
+    );
+
+    expect(user.isValid()).toBe(false);
+  });
+
+  test("true = mot de passe valide", () => {
+    const user = new User(
+      "Simon",
+      "Dousset",
+      "2000-01-01",
+      "simon@test.com",
+      "Password123"
+    );
+  });
 });

@@ -1,9 +1,10 @@
 class User {
-    constructor(firstName, lastName, dateOfBirth, email) {
+    constructor(firstName, lastName, dateOfBirth, email, password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
+        this.password = password;
     }
 
     isValid() {
@@ -11,9 +12,18 @@ class User {
         if (!this.lastName) return false;
         if (!this.email) return false;
         if (!this.dateOfBirth) return false;
+        if (!this.password) return false;
     
         if (!this.email.includes("@")) return false;
     
+        if (!this.firstName || this.firstName.trim() === "") return false;
+        if (!this.lastName || this.lastName.trim() === "") return false;
+
+        if (this.password.length < 8 || this.password.length > 40) return false;
+        if (!this.password.match(/[A-Z]/)) return false;
+        if (!this.password.match(/[a-z]/)) return false;
+        if (!this.password.match(/[0-9]/)) return false;
+        
         // Calculer l'âge seulement avec les années
         const birthYear = new Date(this.dateOfBirth).getFullYear();
         const currentYear = new Date().getFullYear();

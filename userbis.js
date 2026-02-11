@@ -16,10 +16,12 @@ class UserBis {
             today.getDate()
         );
 
-        return this.externalAPI.isValid(this.email)
-            && this.firstName && this.firstName.trim() !== ""
-            && this.lastName && this.lastName.trim() !== ""
-            && birthDate <= thirteenYearsAgo;
+        const emailOk = this.externalAPI.isValid(this.email);
+        const firstNameOk = !!(this.firstName && this.firstName.trim() !== "");
+        const lastNameOk = !!(this.lastName && this.lastName.trim() !== "");
+        const ageOk = birthDate <= thirteenYearsAgo;
+
+        return emailOk && firstNameOk && lastNameOk && ageOk;
     }
 }
 
