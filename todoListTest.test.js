@@ -2,7 +2,7 @@ const TodoList = require("./todoList");
 const User = require("./user");
 const Item = require("./item");
 
-// Petite fonction utilitaire pour créer un User valide
+// Fonction pour créer un User valide
 function createValidUser() {
   return new User(
     "John",
@@ -13,7 +13,7 @@ function createValidUser() {
   );
 }
 
-// Crée des mocks très simples pour les services externes
+// Mocks pour les services externes
 function createServicesMocks() {
   return {
     emailSenderService: {
@@ -75,7 +75,7 @@ describe("TodoList.add()", () => {
     // On ajoute 10 items espacés de plus de 30 minutes
     for (let i = 0; i < 10; i++) {
       const createdAt = new Date(
-        baseDate.getTime() + i * 31 * 60 * 1000 // +31 minutes à chaque fois
+        baseDate.getTime() + i * 31 * 60 * 1000
       );
       const item = new Item(`Item-${i}`, "Test", createdAt);
       todoList.add(item);
@@ -137,7 +137,7 @@ describe("TodoList.add()", () => {
     const item1 = new Item("Item-1", "Test", baseDate);
     todoList.add(item1);
 
-    // 2e item seulement +10 minutes -> doit être refusé
+    // 2e item seulement +10 minutes -> refue
     const tenMinutesLater = new Date(baseDate.getTime() + 10 * 60 * 1000);
     const item2 = new Item("Item-2", "Test", tenMinutesLater);
 

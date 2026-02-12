@@ -23,7 +23,7 @@ class User {
         if (!this.password.match(/[A-Z]/)) return false;
         if (!this.password.match(/[a-z]/)) return false;
         if (!this.password.match(/[0-9]/)) return false;
-        
+
         // Calculer l'âge seulement avec les années
         const birthYear = new Date(this.dateOfBirth).getFullYear();
         const currentYear = new Date().getFullYear();
@@ -37,5 +37,3 @@ class User {
 }
 
 module.exports = User;
-
-// Implementer une classe User et sa classe de test : un user possède un email, prénom, nom, date de naissance. Un user est valide si son email est renseigné, et a le bon format, ses noms et prénom sont renseignés et si il a 13 ans ou plus : opération : isValid dans la classe User

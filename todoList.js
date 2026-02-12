@@ -25,7 +25,7 @@ class TodoList {
             throw new Error("Un item avec ce name existe déjà dans cette ToDoList.");
         }
 
-        // Respect 30 minutes between 2 items
+        // Respect 30 minutes
         if (this.items.length > 0) {
             const lastItem = this.items[this.items.length - 1];
             const lastDate = lastItem.createdAt;
