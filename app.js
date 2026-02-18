@@ -28,6 +28,9 @@ function buildApp() {
   const app = express();
   app.use(express.json());
 
+  // Fichiers statiques (interface : public/index.html)
+  app.use(express.static("public"));
+
   // On crée ici un "user" valide pour toute l'API
   const user = new User(
     "John",
@@ -40,11 +43,6 @@ function buildApp() {
   const emailSenderService = new ConsoleEmailSenderService();
   const itemRepository = new InMemoryItemRepository();
   const todoList = new TodoList(user, emailSenderService, itemRepository);
-
-  // Route de santé / présentation
-  app.get("/", (req, res) => {
-    res.json({ message: "API TodoList en ligne" });
-  });
 
   // Récupérer tous les items de la TodoList
   app.get("/todos", (req, res) => {
@@ -83,7 +81,7 @@ function buildApp() {
 // Export de la fonction pour les tests
 module.exports = buildApp;
 
-// Lancement du serveur uniquement si le fichier est exécuté directement
+// Lancement du serveur uniquement si le fichier est exécuté
 if (require.main === module) {
   const app = buildApp();
   const PORT = process.env.PORT || 3000;

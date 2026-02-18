@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ma TodoList</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      h1 {
+        color: #333;
+      }
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      #liste-items {
+        list-style: none;
+        padding: 0;
+      }
+      #liste-items li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Page Accueil -->
+    <div id="page-accueil" class="page active">
+      <h1>Ma TodoList</h1>
+      <p>Bienvenue. Cliquez pour voir la liste.</p>
+      <button type="button" id="btn-voir-liste">Voir la liste</button>
+    </div>
+
+    <!-- Page Liste -->
+    <div id="page-liste" class="page">
+      <h1>Liste des items</h1>
+      <ul id="liste-items"></ul>
+      <button type="button" id="btn-retour">Retour à l'accueil</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

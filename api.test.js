@@ -7,12 +7,19 @@ beforeEach(() => {
   app = buildApp();
 });
 
+
+// Test de l'API TodoList
 describe("API TodoList", () => {
-  test("GET / renvoie un message de bienvenue", async () => {
+  // Test de la page d'accueil
+  test("GET / renvoie la page d'accueil (HTML)", async () => {
     const response = await request(app).get("/");
 
+    console.log(response.text);
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual({ message: "API TodoList en ligne" });
+    // Vérifie que le contenu est du HTML
+    expect(response.headers["content-type"]).toMatch(/html/);
+    // Vérifie que le contenu contient le titre de la page
+    expect(response.text).toContain("Ma TodoList");
   });
 
   test("GET /todos renvoie une liste vide au départ", async () => {

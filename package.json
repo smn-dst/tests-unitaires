@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test:e2e": "start-server-and-test start http://localhost:3000 cypress:run",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,8 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "cypress": "^13.6.0",
+    "start-server-and-test": "^2.0.3"
   }
 }
